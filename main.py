@@ -108,9 +108,12 @@ def process_connections(conn):
     configured_client = config.rt_client
 
     # Get current time to get last hour logs
-    # current_date_time = datetime.now()
-    # Since we are still in a testing environment so a dummy date of the test data is used
-    current_date_time = datetime.fromtimestamp(int(1565647204351) / 1000 + 60 * 5)
+
+    # Production code
+    current_date_time = datetime.now()
+
+    # Testing environment code
+    #current_date_time = datetime.fromtimestamp(int(1565647204351) / 1000 + 60 * 5)
 
     # Get subset of logs for the last hour
     last_hour_connections = [elem for elem in conn
@@ -132,11 +135,16 @@ def process_connections(conn):
           + str(configured_client))
     print(outgoing_connections)
 
+
     # Get the client who generated more connections in the last hour
     # First get the list of clients in the last hour
     last_clients = [elem[1] for elem in last_hour_connections]
-    # Now get the top one
-    top_client = max(last_clients, key=last_clients.count)
+
+    # Now get the top one if the list is not null
+    top_client = ''
+
+    if last_clients:
+        top_client = max(last_clients, key=last_clients.count)
 
     print('---------------------------------------------------------------------------------')
     print('The hostname (CLIENT) that generated most connections in the last hour:')
