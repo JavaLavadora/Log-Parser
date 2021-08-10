@@ -14,3 +14,11 @@ Basic tool to parse and process connection log files both in batch and real time
 The host connecting to another host is refered to as 'client' since it is the machine generating the connection to the second host. This nomenclature allows for easier comprehension. However, they are still hosts.
 
 When listing host/client connections, some hosts/clienys might appear duplicted because they took part in more than one connection. I decided to keep the duplicated since they provide extra information which might be useful in a future. If they are not needed they can be easily deleted easily with user-level tools (Excel).
+
+## Testing:
+
+Some general format testing was carried out and the corresponding try-except clauses were added to handle them. 
+
+In order to test the functionalities, a human readable subset of the data was used. After verifying the functionalities, the complete data set was used to verify no extra errors appeared.
+
+Some extra steps were added to test the real time part. A hard coded date was used intead of the current date in order to test the functionalities. New records were copy/pasted to the test data and saved. Then it was verified that the program was able to read the new records and rerun the computations. The waiting time was reduced to 15 seconds instead of 1 hour. After testing, the code was set back to taking the current time and waiting 1 hour before processing new records as specified.
